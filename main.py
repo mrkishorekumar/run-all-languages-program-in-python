@@ -3,8 +3,8 @@ import subprocess
 from string import Template
 
 if __name__ == '__main__':
-    with open("program_input",'r') as inp:
-        with open("program_out",'w') as out:
+    with open("program_input.txt",'r') as inp:
+        with open("program_out.txt",'w') as out:
             lang = input().lower()
             # Python  
             if lang=="py":
@@ -29,9 +29,18 @@ if __name__ == '__main__':
                 subprocess.call(["g++", "cpp.cpp"]) 
                 tmp=subprocess.call("a", stdin = inp) 
                 os.remove("a.exe")
-                
 
-            if lang=="c" or lang=="cpp":
+            # Java Program
+            elif lang=="java":
+                subprocess.call(["javac", "Main.java"]) 
+                tmp=subprocess.call("java Main", stdin = inp) 
+                os.remove("Main.class")
+
+            else:
+                print("Incorrect Lang")
+                
+            # Output
+            if lang=="c" or lang=="cpp" or lang=="java":
                 print(tmp)
                 
             else:
